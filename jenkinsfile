@@ -37,6 +37,7 @@ pipeline {
                         bat 'docker run -d --name jenkinsimage12 -p 8026:80 jenkinsimg'
                 }
             }
+         }
          stage('pulling the changes') {
                 steps {
                     dir('C:\\newtask') {
@@ -46,6 +47,7 @@ pipeline {
                         '''
         }
     }
+}
 }
 }
 }
