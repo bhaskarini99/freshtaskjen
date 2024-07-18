@@ -29,8 +29,7 @@ pipeline {
         
         stage ('Build Docker Image') {
             steps {
-                    echo "Building Docker image..."
-                        bat 
+                    echo "Building Docker image..." 
                         bat 'docker build -t jenkinsimg .'
                         bat 'docker run -d --name jenkinsimage12 -p 8026:80 jenkinsimg'
                 }
