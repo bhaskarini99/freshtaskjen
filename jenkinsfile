@@ -1,0 +1,42 @@
+pipeline {
+    agent any
+    
+    triggers{
+        
+        pollSCM('H/2 * * * *')
+    }
+    
+    environment {
+        DOCKERHUB_USERNAME = 'govardhan99'
+        DOCKERHUB_PASSWORD = 'Giridhar@99'
+    }
+    
+    stages {
+        stage('Checkout') {
+            steps {
+                git branch:'master', url:'https://github.com/bhaskarini99/freshtaskjen.git'
+            }
+        }
+
+       stage('Login to Docker Hub') {
+            steps {
+                script {
+                    echo "Logging in to Docker Hub..."
+                    bat """
+                    docker login -u "${DOCKERHUB_USERNAME}" -p "${DOCKERHUB_PASSWORD}"
+                    """
+                }
+            }
+        }
+        
+        stage('Build Docker Image') {
+            steps {
+                script {
+                    echo "Building Docker image..."
+                        bat 'docker build -t jenkinsimg .'
+                        bat 'docker run -d --name jenkinsimage44 -p 8022:80 jenkinsimg'
+                }
+            }
+        }
+    }
+}
