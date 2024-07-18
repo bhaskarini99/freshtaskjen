@@ -20,7 +20,6 @@ pipeline {
 
        stage ('credentials') {
             steps {
-                script {
                     echo "Logging in to Docker Hub..."
                     bat """
                     docker login -u "${DOCKERHUB_USERNAME}" -p "${DOCKERHUB_PASSWORD}"
@@ -30,14 +29,12 @@ pipeline {
         
         stage ('Build Docker Image') {
             steps {
-                script {
                     echo "Building Docker image..."
                         bat 
                         bat 'docker build -t jenkinsimg .'
                         bat 'docker run -d --name jenkinsimage12 -p 8026:80 jenkinsimg'
                 }
             }
-         }
          stage ('pulling the changes') {
                 steps {
                     dir('C:\\projectfolder11') {
@@ -47,7 +44,6 @@ pipeline {
                         '''
         }
     }
-}
 }
 }
 }
