@@ -35,7 +35,7 @@ pipeline {
                     echo "Building Docker image..."
                         bat 
                         bat 'docker build -t jenkinsimg .'
-                        bat 'docker run -d --name jenkinsimage44 -p 8022:80 jenkinsimg'
+                        bat 'docker run -d --name jenkinsimage12 -p 8026:80 jenkinsimg'
                 }
             }
          stage('pulling the changes') {
